@@ -14,7 +14,7 @@ tokens.config(); // retrieve rates from cryptocompare
 
 const events = {};
 
-const THRESHOLD = 5000;
+const THRESHOLD = 25000;
 
 function handleEvent(event) {
   // convert the token value from web3.js into a normalized form
