@@ -1,9 +1,11 @@
-//process.env.TWITTER_API_KEY...
-const result = require('dotenv').config();
+console.log('starting up...');
+//TODO - load dotenv if not production
 
-if (result.error) {
-  throw result.error;
-}
+// const result = require('dotenv').config();
+
+// if (result.error) {
+//   throw result.error;
+// }
 
 const tweet = require('./tweet');
 const tracker = require('./track');
