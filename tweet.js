@@ -5,8 +5,6 @@ const options = {
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 };
 
-console.log('Twitter secrets:', options);
-
 const client = new require('twitter')(options);
 
 function tweet(str) {
