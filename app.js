@@ -1,6 +1,3 @@
-console.log('starting up...');
-//TODO - load dotenv if not production
-
 // const result = require('dotenv').config();
 
 // if (result.error) {
