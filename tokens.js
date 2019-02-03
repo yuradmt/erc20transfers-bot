@@ -76,23 +76,20 @@ function getRateBySymbol(symbol) {
   return rate ? rate : 0;
 }
 
-// retrieve token data from Ethplorer
 function getTokenInfo() {
   TOP_TOKENS.map((token, index) => {
     let cryptocomparePath = `${CRYPTOCOMPARE_API_URL}?fsym=${
       token.symbol
     }&tsyms=USD&?&api_key=${CRYPTOCOMPARE_KEY}`;
-    setTimeout(() => {
-      axios
-        .get(cryptocomparePath)
-        .then(response => {
-          token.rate = response.data.USD;
-          console.log(`${token.symbol} price=$${token.rate}`);
-        })
-        .catch(err => {
-          console.log('Axios error', err);
-        });
-    }, THROTTLE_API_MS);
+    axios
+      .get(cryptocomparePath)
+      .then(response => {
+        token.rate = response.data.USD;
+        console.log(`${token.symbol} price=$${token.rate}`);
+      })
+      .catch(err => {
+        console.log('Axios error', err);
+      });
   });
 }
 

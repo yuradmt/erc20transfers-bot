@@ -24,7 +24,7 @@ async function track(contractAddress, callback) {
       )
       .then(response => {
         response.data.operations.forEach(op => {
-          callback(response.data.operations[0]);
+          callback(op);
         });
       })
       .catch(err => {
