@@ -20,9 +20,6 @@ function handleEvent(event) {
   }
 
   const txHash = event.transactionHash;
-  // console.log(
-  //   `checking ${txHash} in events. events.size = ${Object.keys(events).length}`
-  // );
   if (txHash in events) {
     return;
   }
@@ -34,9 +31,7 @@ function handleEvent(event) {
   const value = Number(price * amount).toFixed(2);
   const link = createEtherscanLink(txHash);
   if (value > THRESHOLD) {
-    const output =
-      `${amount} $${symbol} tokens transferred from ${from} to ` +
-      `${to} Total Value $${value} URL: ${link}`;
+    const output = `💸💸💸 Transfer detected 💸💸💸\n💲 ${value} in $${symbol} moved\n\n From: ${from}\n To: ${to}\n Tokens: ${amount} ${symbol}\n🔗 URL: ${link}`;
     console.log(output);
     tweet.tweet(output);
   }
