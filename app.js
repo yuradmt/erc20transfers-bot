@@ -3,6 +3,7 @@ require('dotenv').config();
 const tweet = require('./tweet');
 const tracker = require('./track');
 const tokens = require('./tokens');
+const exchanges = require('./exchanges');
 tokens.config(); // retrieve rates from cryptocompare
 
 const events = {};
@@ -27,6 +28,8 @@ function handleEvent(event) {
   const symbol = event.tokenInfo.symbol;
   const name = event.tokenInfo.name;
   const { from, to } = event;
+  const from_name = exchanges.getAccountName(from);
+  const to_name = exchanges.getAccountName(to);
   const amount = displayTokenValue(event.value, event.tokenInfo.decimals);
   const price = tokens.getRateBySymbol(symbol);
   const value = Number(price * amount).toFixed(2);
@@ -34,7 +37,7 @@ function handleEvent(event) {
   if (value > THRESHOLD) {
     const output = `💸💸💸 Transfer detected 💸💸💸\n💲 ${value} in $${symbol} ${
       tokens.isStable(symbol) ? 'stablecoin' : ''
-    } moved\n\n From: ${from}\n To: ${to}\n Tokens: ${amount} ${symbol}(${name})\n🔗 URL: ${link}`;
+    } moved\n\n From: ${from_name} ${from}\n To: ${to_name} ${to}\n Tokens: ${amount} ${symbol}(${name})\n🔗 URL: ${link}`;
     console.log(output);
     if (!process.env.DEVELOPMENT) {
       tweet.tweet(output);
